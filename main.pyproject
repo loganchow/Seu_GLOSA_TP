@@ -1,0 +1,3 @@
+{
+    "files": ["main.py","Widget.py","socket_connect.py","MainWindow.py","data_resolve.py"]
+}
