@@ -1,3 +1,3 @@
 {
-    "files": ["main.py","Widget.py","socket_connect.py","MainWindow.py","data_resolve.py"]
+    "files": ["data_resolve.py","main.py","Widget.py","dialog.py","MainWindow.py","socket_connect.py","data_generator_demo.py"]
 }

@@ -2,6 +2,7 @@
 from PySide2 import QtCore
 from PySide2.QtGui import QKeySequence
 from PySide2.QtWidgets import QMainWindow, QAction
+import dialog
 
 
 class MainWindow(QMainWindow):
@@ -21,14 +22,24 @@ class MainWindow(QMainWindow):
         disconnect_action = QAction("Disconnect SOCKET", self)
 
 
+        # Record QAction
+        start_record_action = QAction("Start Record",self)
+        # start_record_action.triggered.connect()
+
         # Exit QAction
         exit_action = QAction("Exit", self)
         exit_action.setShortcut(QKeySequence.Quit)
         exit_action.triggered.connect(self.close)
 
+        # About QAction
+        about_action = QAction("About", self)
+        exit_action.triggered.connect(dialog.about)
+
         self.file_menu.addAction(connect_action)
         self.file_menu.addAction(disconnect_action)
         self.file_menu.addAction(exit_action)
+        self.control_menu.addAction(start_record_action)
+        self.about_menu.addAction(about_action)
 
         # Status Bar
         self.status = self.statusBar()

@@ -2,6 +2,7 @@
 from PySide2 import QtCore
 from PySide2 import QtWidgets
 from PySide2 import QtGui
+import time, random
 
 class Widget(QtWidgets.QWidget):
     def __init__(self):
@@ -29,9 +30,7 @@ class Widget(QtWidgets.QWidget):
         self.interID = QtWidgets.QLabel("000000",self.groupboxBasic)
 
         self.numPv = QtWidgets.QDoubleSpinBox(self.groupboxBasic)
-        self.numPvButton = QtWidgets.QPushButton("Enter",self.groupboxBasic)
-
-
+        self.buttonNumPv = QtWidgets.QPushButton("Enter",self.groupboxBasic)
 
         # 提示标签的定位
         self.labelEvspeed.setGeometry(QtCore.QRect(10, 40, 150, 31))
@@ -50,11 +49,8 @@ class Widget(QtWidgets.QWidget):
         self.interID.setGeometry(QtCore.QRect(230, 180, 100, 31))
         self.interID.setGeometry(QtCore.QRect(230, 230, 100, 31))
 
-
         self.numPv.setGeometry(QtCore.QRect(20, 330, 100, 31))
-        self.numPvButton.setGeometry(QtCore.QRect(230, 330, 100, 31))
-
-
+        self.buttonNumPv.setGeometry(QtCore.QRect(230, 330, 100, 31))
 
 
         # 提示标签的样式设置
@@ -76,27 +72,6 @@ class Widget(QtWidgets.QWidget):
         self.dis2Stop.setFont(fontLabel)
         self.interID.setFont(fontLabel)
 
-#        self.left_upper = QtWidgets.QVBoxLayout()
-#        self.left_upper.addWidget(self.labelEvspeed)
-#        self.left_upper.addWidget(self.evSpeed)
-#        self.left_upper.addWidget(self.labelPvspeed)
-#        self.left_upper.addWidget(self.pvSpeed)
-#        self.left_upper.addWidget(self.labelLimitspeed)
-#        self.left_upper.addWidget(self.limitSpeed)
-#        self.left_upper.addWidget(self.labelDis2stpline)
-#        self.left_upper.addWidget(self.dis2Stop)
-#        self.left_upper.addWidget(self.labelInterID)
-#        self.left_upper.addWidget(self.interID)
-#        self.left_upper.addWidget(self.labelNumpv)
-#        self.left_upper.addWidget(self.numPv)
-#        self.left_upper.addWidget(self.numPvButton)
-
-#        self.left_upper.addStretch(1)
-
-#        self.groupboxBasic.setLayout(self.left_upper)
-        
-
-
 
         ## 中间一栏
         self.groupboxCenter = QtWidgets.QGroupBox(self)
@@ -116,41 +91,73 @@ class Widget(QtWidgets.QWidget):
         self.lowerSpeed.setFont(fontLcd)
         self.upperSpeed.setFont(fontLcd)
 
-
-
-
-        # self.center_upper = QtWidgets.QVBoxLayout()
-        # self.center_upper.addWidget(self.upperSpeed)
-        # self.center_upper.addWidget(self.lowerSpeed)
-
-        # self.groupboxCenter.setLayout(self.center_upper)
-
         # 右侧一栏
         self.groupboxSignal = QtWidgets.QGroupBox(self)
         self.groupboxSignal.setTitle("Signal State")
         self.groupboxSignal.setGeometry(QtCore.QRect(750, 10, 360, 400))
 
-        
-        # self.picLeftturn = QtWidgets.QLabel(self.groupboxSignal)
-        # self.picStraightturn = QtWidgets.QLabel(self.groupboxSignal)
-        # self.picRightturn = QtWidgets.QLabel(self.groupboxSignal)
-
-
-
-        # self.right_upper = QtWidgets.QVBoxLayout()
-        # self.right_upper.addWidget(self.picLeftturn)
-        # self.right_upper.addWidget(self.picStraightturn)
-        # self.right_upper.addWidget(self.picRightturn)
-
-        # self.groupboxRight.setLayout(self.right_upper)
-
-
         # 总布局
-        # self.layout = QtWidgets.QHBoxLayout()
 
-        # self.layout.addWidget(self.groupboxBasic)
-        # self.layout.addWidget(self.groupboxCenter)
-        # self.layout.addWidget(self.groupboxRight)
+        # 左侧栏显示功能实现
+        
+        self.buttonNumPv.clicked.connect(self.start_demo())
 
-        # Set the layout to the QWidget
-        # self.setLayout(self.layout)
+    @QtCore.Slot()
+    def start_demo(self):
+        self.data_gene()
+        self.show_evSpeed()
+        self.show_hvSpeed()
+        self.show_limitSpeed()
+
+    
+    # @QtCore.Slot()
+    # def play(self):
+    #     listSpeed = data_generator_demo.data_gene()
+
+
+    # @QtCore.Slot()
+    # def show_upperSpeed(self):
+    #     for j in range(1,5):
+    #         self.upperSpeed.display(j)
+    #         QtWidgets.QApplication.processEvents()
+    #         time.sleep(1)
+
+    # @QtCore.Slot()
+    # def show_lowerSpeed(self):
+    #     for j in range(1,5):
+    #         self.upperSpeed.display(j)
+    #         QtWidgets.QApplication.processEvents()
+    #         time.sleep(1)
+
+    @QtCore.Slot()
+    def show_evSpeed(self):
+        listSpeed = self.data_gene()
+        j = listSpeed[0]
+        self.evSpeed.setText(str(j))
+        QtWidgets.QApplication.processEvents()
+
+    @QtCore.Slot()
+    def show_hvSpeed(self):
+        listSpeed = self.data_gene()
+        j = listSpeed[1]
+        self.pvSpeed.setText(str(j))
+        QtWidgets.QApplication.processEvents()
+            
+    @QtCore.Slot()
+    def show_limitSpeed(self):
+        listSpeed = self.data_gene()
+        j = listSpeed[2]
+        self.limitSpeed.setText(str(j))
+        QtWidgets.QApplication.processEvents()
+
+    @QtCore.Slot()
+    def data_gene(self):
+        self.listSpeed = []
+        self.limit = 60
+        # for i in range(0,100):
+        self.ev = random.randint(0,60)
+        self.hv = random.randint(0,60)
+        self.listSpeed.append(self.ev)
+        self.listSpeed.append(self.hv)
+        self.listSpeed.append(self.limit)
+        return self.listSpeed
