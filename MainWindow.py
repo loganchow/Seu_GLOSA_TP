@@ -47,6 +47,6 @@ class MainWindow(QMainWindow):
 
         # Window dimensions
         geometry = QtCore.qApp.desktop().availableGeometry(self)
-        self.setFixedSize(geometry.width() * 0.7, geometry.height() * 0.6)
+        self.setFixedSize(geometry.width() * 0.65, geometry.height() * 0.6)
 
         self.setCentralWidget(widget)

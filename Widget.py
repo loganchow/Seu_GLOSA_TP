@@ -2,7 +2,7 @@
 from PySide2 import QtCore
 from PySide2 import QtWidgets
 from PySide2 import QtGui
-import time, random
+import random
 
 class Widget(QtWidgets.QWidget):
     def __init__(self):
@@ -33,8 +33,8 @@ class Widget(QtWidgets.QWidget):
         self.buttonNumPv = QtWidgets.QPushButton("Enter",self.groupboxBasic)
 
         # 提示标签的定位
-        self.labelEvspeed.setGeometry(QtCore.QRect(10, 40, 150, 31))
-        self.labelPvspeed.setGeometry(QtCore.QRect(10, 90, 150, 31))
+        self.labelEvspeed.setGeometry(QtCore.QRect(10, 30, 150, 31))
+        self.labelPvspeed.setGeometry(QtCore.QRect(10, 80, 150, 31))
         self.labelLimitspeed.setGeometry(QtCore.QRect(10, 130, 150, 31))
         self.labelDis2stpline.setGeometry(QtCore.QRect(10, 180, 150, 31))
         self.labelInterID.setGeometry(QtCore.QRect(10, 230, 200, 31))
@@ -76,7 +76,7 @@ class Widget(QtWidgets.QWidget):
         ## 中间一栏
         self.groupboxCenter = QtWidgets.QGroupBox(self)
         self.groupboxCenter.setTitle("Advice Speed")
-        self.groupboxCenter.setGeometry(QtCore.QRect(490, 10, 250, 400))
+        self.groupboxCenter.setGeometry(QtCore.QRect(490, 10, 250, 500))
 
         self.lowerSpeed = QtWidgets.QLCDNumber(self.groupboxCenter)
         self.upperSpeed = QtWidgets.QLCDNumber(self.groupboxCenter)
@@ -94,7 +94,27 @@ class Widget(QtWidgets.QWidget):
         # 右侧一栏
         self.groupboxSignal = QtWidgets.QGroupBox(self)
         self.groupboxSignal.setTitle("Signal State")
-        self.groupboxSignal.setGeometry(QtCore.QRect(750, 10, 360, 400))
+        self.groupboxSignal.setGeometry(QtCore.QRect(750, 10, 360, 500))
+
+        self.leftSignal = QtWidgets.QLabel(self.groupboxSignal)
+        self.straightSignal = QtWidgets.QLabel(self.groupboxSignal)
+        self.rightSignal = QtWidgets.QLabel(self.groupboxSignal)
+
+        self.lcdTimeLeftSignal = QtWidgets.QLCDNumber(self.groupboxSignal)
+        self.lcdTimeStraightSignal = QtWidgets.QLCDNumber(self.groupboxSignal)
+        self.lcdTimeRightSignal = QtWidgets.QLCDNumber(self.groupboxSignal)
+
+        self.lcdTimeLeftSignal.setGeometry(QtCore.QRect(20,240,64,64))
+        self.lcdTimeStraightSignal.setGeometry(QtCore.QRect(140,240,64,64))
+        self.lcdTimeRightSignal.setGeometry(QtCore.QRect(270,240,64,64))
+
+        fontLcdSmall = QtGui.QFont()
+        fontLcdSmall.setFamily(u"Arial Black")
+        fontLcdSmall.setPointSize(10)
+
+        self.lcdTimeLeftSignal.setFont(fontLcdSmall)
+        self.lcdTimeStraightSignal.setFont(fontLcdSmall)
+        self.lcdTimeRightSignal.setFont(fontLcdSmall)
 
         # 总布局
 
