@@ -22,14 +22,19 @@
 - √ 以 Excel 格式保存记录的数据
 - √ 显示接收数据
 - √ 计算 GLOSA 建议车速
+- √ OBU_Core.Node.Publisher
+- √ GLOSA_Core.Node.Subscriber
 
 ## 当前问题
-- 同时进行数据接收，车速计算，界面显示（刷新），数据记录
+- 同时进行数据接收，车速计算，界面显示（刷新），数据记录（多线程）
 - 配合 ROS 对各部分重写
-- Qt.QAction 中 Slot&Signal 有时不够“听话”
+    - 单一节点，多话题订阅
+    - 单一节点，同时订阅、处理完、发布
+    - 话题的设置
+- Qt.QAction 中 Slot&Signal 
 
 ## 未来计划
-- 多线程化
+- ~~多线程化~~
 - ROS 化
 - 界面美化
 
@@ -44,5 +49,5 @@
     - GLOSA
     - GUI
     - Record
-    - ROS (Publish & Subscribe)
+    - ROS (Publisher & Subscriber)
 5. 测试
