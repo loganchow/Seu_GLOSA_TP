@@ -1,5 +1,5 @@
 unit8 numofTrafficLights    # 信号灯个数（单组）
-string StationId    # 路口ID
+unit32 StationId    # 路口ID
 string createdUTC   # 第一次收到某一路口消息的时间戳(ms)
 string LastModified_UTC     # 每次更新此同一路口消息的时间戳 
 string InterTime_UTC    # UTC time stamp from traffic light controller
