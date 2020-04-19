@@ -118,7 +118,7 @@ class Widget(QtWidgets.QWidget):
     def GLOSAcallback(self,msg):
         self.upperSpeed.display(msg.upperSpeed)
         self.lowerSpeed.display(msg.lowerSpeed)
-        self.adviceOperation.display(msg.adviceOperation)
+        self.adviceOperation.display(msg.recomendAction)
         QtWidgets.QApplication.processEvents()
 
     def GPScallback(self,msg):
