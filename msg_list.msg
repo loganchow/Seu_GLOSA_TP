@@ -1,4 +1,4 @@
-# OBU -> Data_Record
+# OBU -> Data_Record,GUI
 unit8 version   #协议版本
 unit8 numofTrafficLights    # 信号灯个数（单组）
 unit32 createdUTC   # 第一次收到某一路口消息的时间戳(ms)

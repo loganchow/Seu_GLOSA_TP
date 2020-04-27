@@ -109,11 +109,11 @@ class Widget(QtWidgets.QWidget):
         self.lcdTimeStraightSignal.setFont(fontLcdSmall)
         self.lcdTimeRightSignal.setFont(fontLcdSmall)
 
-    def testcallback(self,msg):
-        self.lcdTimeLeftSignal.display(msg.likelyTimeLeft)
-        self.lcdTimeStraightSignal.display(msg.likelyTimeStraight)
-        self.lcdTimeRightSignal.display(msg.likelyTimeRight)
-        QtWidgets.QApplication.processEvents()
+    # def testcallback(self,msg):
+    #     self.lcdTimeLeftSignal.display(msg.likelyTimeLeft)
+    #     self.lcdTimeStraightSignal.display(msg.likelyTimeStraight)
+    #     self.lcdTimeRightSignal.display(msg.likelyTimeRight)
+    #     QtWidgets.QApplication.processEvents()
 
     def GLOSAcallback(self,msg):
         self.upperSpeed.display(msg.upperSpeed)
@@ -125,7 +125,6 @@ class Widget(QtWidgets.QWidget):
         self.evSpeed.setText(str(GPS_connect.evSpeed))
 
     def OBUcallback(self,msg):
-
         self.dis2Stop.setText(msg.dis2StopLineStraight)
         self.interID.setText(msg.StationId)
         self.lcdTimeLeftSignal.display(msg.likelyTimeLeft)
@@ -159,7 +158,7 @@ class Widget(QtWidgets.QWidget):
 
     def ros_connect(self):
         rospy.init_node('test_subscriber',anonymous=True)
-        rospy.Subscriber("/test_topic",Obu_connect,testcallback)
+        rospy.Subscriber('/test_topic',Obu_connect,testcallback)
         rospy.Subscriber('/obu_topic',Obu_connect,OBUcallback)
         rospy.Subscriber('/glosa_topic',GLOSA_connect,GLOSAcallback)
         rospy.Subscriber('/gps_output',GPS_connect,GPScallback)
